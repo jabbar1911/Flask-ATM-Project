@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Funds</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='dashboard.css')}}">
+    <style>
+        .form-container {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f0f2f5;">
+    <div class="navbar">
+        <h1><i class="fas fa-university"></i> Digital ATM</h1>
+    </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="form-container">
+                    <h2 class="form-title"><i class="fas fa-money-bill-wave" style="color: #3a7bd5;"></i> Deposit Funds
+                    </h2>
+                    <form action="{{url_for('deposit')}}" method="POST">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount to Deposit</label>
+                            <div class="input-group">
+                                <span class="input-group-text">₹</span>
+                                <input type="number" class="form-control" id="amount" name="amount" required min="100"
+                                    max="50000" step="100">
+                            </div>
+                            <div class="form-text">Max limit: ₹50,000. Multiples of 100 only.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pin" class="form-label">Enter PIN</label>
+                            <input type="password" class="form-control" id="pin" name="pin" required maxlength="4">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Deposit</button>
+                            <a href="{{url_for('dashboard')}}" class="btn btn-outline-secondary">Back to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
