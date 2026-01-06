@@ -2,9 +2,10 @@ from flask import Flask, request,url_for,redirect,render_template ,make_response
 from datetime import datetime
 
 app=Flask(__name__)
-app.secret_key = 'super_secret_key_for_atm_project'
+# Generated using: import secrets; secrets.token_hex(32)
+app.secret_key = '8c851a0065b2c05d358826500e1e603373c8195cf7ac1c2d577acdc57ca449f7'
+
 @app.route('/')
-@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -221,3 +222,4 @@ users={}
 
 if __name__ == "__main__":
     app.run(debug=False)
+    

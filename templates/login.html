@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-8 col-lg-6">
                 <div class="login-container">
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -29,22 +29,29 @@
                     {% endwith %}
                     <h2>Login</h2>
                     <form action="" method="POST">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="username" placeholder="Enter Username" name="username" required>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="username" placeholder="Enter Username" name="username"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="pin">PIN</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="pin" name="pin" placeholder="Enter PIN" required
+                                            maxlength="4" pattern="\d{4}" title="PIN must be exactly 4 digits">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="pin">PIN</label>
-                            <div class="input-group">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="pin" name="pin" placeholder="Enter PIN" required
-                                    maxlength="4" pattern="\d{4}" title="PIN must be exactly 4 digits">
-                            </div>
-                        </div>
-                        <button class="btn-submit">Login</button>
+                        <button type="submit" class="btn-submit">Login</button>
                     </form>
                     <div class="links">
                         <a href="{{url_for('register')}}">Don't have an account? Register here</a>

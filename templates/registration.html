@@ -81,13 +81,12 @@
                             </div>
                         </div>
 
-                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                        <div class="terms-container">
                             <input type="checkbox" required id="terms">
-                            <label for="terms" style="margin: 0; font-size: 0.9rem;">I agree to the <a href='#'
-                                    style="color: #fff; text-decoration: underline;">terms and conditions</a></label>
+                            <label for="terms">I agree to the <a href='#'>terms and conditions</a></label>
                         </div>
 
-                        <button class="btn-register">Sign Up</button>
+                        <button type="submit" class="btn-register">Sign Up</button>
                     </form>
                     <div class="links">
                         <a href="{{url_for('login')}}">Already have an account? Log in</a>

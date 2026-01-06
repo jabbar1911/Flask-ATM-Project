@@ -1,109 +1,372 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body {
+:root {
+    --primary-gradient: linear-gradient(135deg, #0f172a, #1e293b);
+    --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-color: #ffffff;
+    --card-hover: rgba(255, 255, 255, 0.08);
+}
+
+body,
+.dashboard-body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: #f4f7f6;
-    color: #333;
+    background: var(--primary-gradient);
+    background-attachment: fixed;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated Background Elements */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    animation: move 30s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: rgba(59, 130, 246, 0.1);
+    top: -200px;
+    left: -200px;
+}
+
+body::after {
+    background: rgba(139, 92, 246, 0.1);
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -15s;
+}
+
+@keyframes move {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(200px, 200px) scale(1.2);
+    }
 }
 
 .navbar {
-    background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.2rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: white;
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .navbar .user-info {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .btn-logout {
-    padding: 8px 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.6rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     color: white;
-    border-radius: 20px;
+    border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .btn-logout:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .dashboard-container {
-    padding: 40px 50px;
+    padding: 3rem 5%;
     flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .welcome-banner {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-banner h2 {
     margin: 0;
-    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
 }
 
-/* .card-grid removed, using Bootstrap grid */
+.user-details p {
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.welcome-banner h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+}
 
 .card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid var(--glass-border);
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    height: 100%;
+    color: #fff;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-12px);
+    background: var(--card-hover);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 210, 255, 0.1);
 }
 
 .card i {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    background: -webkit-linear-gradient(#3a7bd5, #00d2ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #00d2ff;
+    text-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
 }
 
 .card h3 {
-    margin: 10px 0;
-    color: #2c3e50;
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .card p {
-    color: #7f8c8d;
+    opacity: 0.7;
     font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .navbar h1 {
+        font-size: 1.3rem;
+    }
+
+    .dashboard-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .welcome-banner {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .welcome-banner h3 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Common Form Container for Deposit, Withdraw, etc. */
+.form-container {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3.5rem 5%;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container .form-label {
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
+    color: #fff !important;
+}
+
+.form-container .input-group-text {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    border-radius: 12px 0 0 12px;
+    padding: 0.8rem 1.2rem;
+}
+
+.form-container .form-control {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem !important;
+    min-height: 60px;
+    font-size: 1.1rem;
+}
+
+.form-container .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-container .form-control:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.form-container .form-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+}
+
+.btn-primary-custom {
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+    color: #fff;
+}
+
+/* Statement Table Styles */
+.transaction-table {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+    color: #fff !important;
+    margin-bottom: 0;
+}
+
+.table thead {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid var(--glass-border);
+}
+
+.table th {
+    padding: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.table td {
+    padding: 1.2rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff !important;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.bg-success {
+    background-color: rgba(40, 167, 69, 0.2) !important;
+    border: 1px solid rgba(40, 167, 69, 0.4);
+    color: #28a745 !important;
+}
+
+.bg-danger {
+    background-color: rgba(220, 53, 69, 0.2) !important;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+    color: #ff4b2b !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #ff4b2b !important;
 }

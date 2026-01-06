@@ -1,151 +1,262 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #0f172a, #1e293b);
+    --accent-gradient: linear-gradient(135deg, #10b981, #3b82f6);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-focus: rgba(255, 255, 255, 0.1);
+}
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 2rem 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #11998e, #38ef7d);
+    background: var(--primary-gradient);
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
-    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
+    position: relative;
 }
 
+/* Animated Background Elements */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    animation: move 25s infinite alternate ease-in-out;
+}
 
+body::before {
+    background: rgba(16, 185, 129, 0.1);
+    top: -150px;
+    left: -150px;
+}
 
+body::after {
+    background: rgba(59, 130, 246, 0.1);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -12s;
+}
 
+@keyframes move {
+    from {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: translate(150px, 150px) rotate(30deg) scale(1.1);
+    }
+}
 
 .register-container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 40px;
-    width: 100%;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 20px;
-    transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    border-radius: 32px;
+    padding: 3.5rem 5%;
+    width: 95%;
+    max-width: 850px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px var(--glass-border);
+    position: relative;
+    z-index: 1;
+    animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
 
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
 
 .register-container h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: 700;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    /* Slightly tighter for register due to many fields */
-    position: relative;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left: 0.5rem;
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    padding: 12px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: 0.3s;
+    background: var(--input-bg);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-.input-group:hover,
 .input-group:focus-within {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    background: var(--input-focus);
+    border-color: #10b981;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+    transform: translateY(-2px);
 }
-
-
 
 .input-group i {
-    margin-right: 15px;
+    margin-right: 1.2rem;
     font-size: 1.1rem;
-    transition: color 0.3s;
+    color: #64748b;
+    transition: all 0.3s;
 }
 
-
+.input-group:focus-within i {
+    color: #10b981;
+}
 
 .input-group input {
-    background: transparent;
+    background: transparent !important;
     border: none;
     outline: none;
     color: #fff !important;
     width: 100%;
     font-size: 1rem;
-    padding: 5px 0;
     font-family: inherit;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
 }
-
-
-
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-
 
 /* Fix for browser autofill overriding background */
 .input-group input:-webkit-autofill,
 .input-group input:-webkit-autofill:hover,
 .input-group input:-webkit-autofill:focus,
 .input-group input:-webkit-autofill:active {
-    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset !important;
+    box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset !important;
+    -webkit-text-fill-color: #fff !important;
     transition: background-color 5000s ease-in-out 0s;
-    background: transparent !important;
 }
 
-
+.input-group input::placeholder {
+    color: #475569;
+}
 
 .btn-register {
     width: 100%;
-    padding: 15px;
+    padding: 1.2rem;
     border: none;
-    border-radius: 50px;
-    background: linear-gradient(45deg, #FF8008, #FFC837);
+    border-radius: 16px;
+    background: var(--accent-gradient);
     color: #fff;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
-    margin-top: 25px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 2rem;
+    box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
 }
 
 .btn-register:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(255, 200, 55, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+    filter: brightness(1.1);
 }
 
 .links {
     text-align: center;
-    margin-top: 25px;
+    margin-top: 2.5rem;
 }
 
 .links a {
-    color: #fff;
+    color: #94a3b8;
     text-decoration: none;
     font-size: 0.9rem;
-    transition: 0.3s;
+    padding: 0.6rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
-
-
 .links a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--glass-border);
+}
+
+.terms-container {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.terms-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #10b981;
+}
+
+.terms-container label {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.terms-container label a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-container label a:hover {
     text-decoration: underline;
-    font-weight: bold;
-    color: #FF8008;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        padding: 2rem 1.2rem;
+        margin: 1rem;
+    }
+
+    .register-container h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .row>div {
+        margin-bottom: 0.5rem;
+    }
 }
