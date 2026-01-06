@@ -1,5 +1,6 @@
 # 31-12-25,1-1-26
 from flask import Flask, request,url_for,redirect,render_template ,make_response
+from datetime import datetime
 
 app=Flask(__name__)
 @app.route('/')
@@ -126,6 +127,20 @@ def delete():
             return "Invalid PIN"
             
     return render_template('delete.html')
+@app.route('/statement')
+def statement():
+    username = request.cookies.get('username')
+    if not username:
+        return redirect(url_for('login'))
+    
+    user_data = users.get(username)
+    if user_data:
+        transactions = user_data.get('transactions', [])
+        # Sort transactions by date (newest first) - assuming appending makes them oldest first, so reverse
+        transactions = transactions[::-1]
+        return render_template('statement.html', transactions=transactions, username=username)
+    return redirect(url_for('login'))
+
 
 @app.route('/logout')
 def logout():
