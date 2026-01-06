@@ -12,8 +12,8 @@ body {
     margin: 0;
     padding: 2rem 0;
     font-family: 'Poppins', sans-serif;
-    background: var(--primary-gradient);
-    background-attachment: fixed;
+    background-color: #0f172a;
+    /* Fallback for mobile */
     min-height: 100vh;
     color: #fff;
     overflow-x: hidden;
@@ -21,6 +21,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Fixed Gradient Background Workaround for Mobile */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    z-index: -2;
+    pointer-events: none;
 }
 
 /* Global Animated Background Elements */
