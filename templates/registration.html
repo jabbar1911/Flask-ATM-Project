@@ -17,6 +17,16 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="register-container">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <h2>Create Account</h2>
                     <form action="" method="post">
                         <div class="row g-3">
@@ -43,7 +53,9 @@
                                     <label for="contact">Phone Number</label>
                                     <div class="input-group">
                                         <i class="fas fa-phone"></i>
-                                        <input type="text" placeholder="Phone Number" name="contact" required>
+                                        <input type="tel" placeholder="Phone Number" name="contact" required
+                                            pattern="[0-9]{10}" maxlength="10"
+                                            title="Phone number must be exactly 10 digits">
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +64,8 @@
                                     <label for="pin">PIN</label>
                                     <div class="input-group">
                                         <i class="fas fa-lock"></i>
-                                        <input type="password" placeholder="PIN" name="pin" required>
+                                        <input type="password" placeholder="PIN" name="pin" required maxlength="4"
+                                            pattern="\d{4}" title="PIN must be exactly 4 digits">
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +74,8 @@
                                     <label for="confirm_pin">Confirm PIN</label>
                                     <div class="input-group">
                                         <i class="fas fa-lock"></i>
-                                        <input type="password" placeholder="Confirm PIN" name="confirm_pin" required>
+                                        <input type="password" placeholder="Confirm PIN" name="confirm_pin" required
+                                            maxlength="4" pattern="\d{4}" title="PIN must be exactly 4 digits">
                                     </div>
                                 </div>
                             </div>

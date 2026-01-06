@@ -40,6 +40,16 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-5">
                 <div class="form-container">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <h2 class="form-title"><i class="fas fa-exclamation-triangle"></i> Delete Account</h2>
                     <p class="warning-text">This action is permanent and cannot be undone. Please enter your PIN to
                         confirm deletion.</p>
