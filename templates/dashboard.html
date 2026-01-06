@@ -57,11 +57,13 @@
                 </a>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <h3>Statement</h3>
-                    <p>View transaction history</p>
-                </div>
+                <a href="{{url_for('statement')}}" style="text-decoration: none; color: inherit;">
+                    <div class="card h-100">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h3>Statement</h3>
+                        <p>View transaction history</p>
+                    </div>
+                </a>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <a href="{{url_for('delete')}}" style="text-decoration: none; color: inherit;">
